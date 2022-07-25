@@ -11,8 +11,9 @@
 
 :root {
 
-    --white: #fefefe ;
-    --lightgrey: #f9f9f9ff;;
+    --white: #fefefe;
+    --lightgrey: #f9f9f9ff;
+    ;
     --mediumgrey: #a7a7a7;
     --grey: #c4c4c4;
     --darkgrey: #343434;
@@ -26,22 +27,30 @@
 .search {
     width: 20%;
     height: 20px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #3a444d;
+    font-size: clamp(8px, 5vw, 1rem);
 }
 
-.main{
+
+.main {
     border-style: solid;
+    display:flex;
     border-color: var(--grey);
+    justify-content: space-between;
     width: 100%;
     height: 60vh;
     justify-content: center;
 }
 
-.img{
+.img {
     border-style: solid;
     display: inline-block;
     border-color: var(--grey);
-    width: 45%;
-    height: 90%;
+    width: 40%;
+    height: 85%;
     margin-top: 1.5%;
 }
 
@@ -50,19 +59,26 @@
     width: 100%;
 }
 
-.type{
+.type {
     border-style: solid;
     display: inline-block;
     border-color: var(--grey);
-    width: 45%;
-    height: 90%;
+    width: 40%;
+    height:  85%;
     margin-top: 1.5%;
 }
 
-.status{ 
+.status {
     border-style: solid;
     border-color: var(--red);
     width: 100%;
     height: 40vh;
 }
 
+.pokemon_img_data {
+    position: relative;
+    bottom: 80%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    height: 50%;
+}
