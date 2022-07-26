@@ -6,14 +6,12 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Lexend Deca', sans-serif;
-
 }
 
 :root {
 
     --white: #fefefe;
     --lightgrey: #f9f9f9ff;
-    ;
     --mediumgrey: #a7a7a7;
     --grey: #c4c4c4;
     --darkgrey: #343434;
@@ -81,4 +79,24 @@
     left: 50%;
     transform: translate(-50%, 50%);
     height: 50%;
+}
+
+.pokemon_data h1{
+    font-weight: 500;
+    color: red;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.pokemon_data h2{
+    font-weight: 500;
+    color: blue;
+    font-size: 20px;
+}
+
+.pokemon_data h3{
+    border-style: solid;
+    border-color: var(--lightgrey);
+    font-size: 10px;
+    color: purple;
 }
