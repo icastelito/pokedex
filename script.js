@@ -37,11 +37,83 @@ const renderPokemon = async (pokemon) => {
         };
 
         switch (data['types']['0']['type']['name']) {
-            case "grass": add.style.type_pokemon1.background-color:#a59;
+            case "normal": pokemonType1.style.backgroundColor = '#aa9';
                 break;
-            case "poison": pokemonType1.innerHTML = "EU TO DOIDO OU NÃO";
+            case "fire": pokemonType1.style.backgroundColor = '#f42';
+                break;
+            case "water": pokemonType1.style.backgroundColor = '#39f';
+                break;
+            case "electric": pokemonType1.style.backgroundColor = '#fc3';
+                break;
+            case "grass": pokemonType1.style.backgroundColor = '#7c5';
+                break;
+            case "ice": pokemonType1.style.backgroundColor = '#6cf';
+                break;
+            case "fighting": pokemonType1.style.backgroundColor = '#b54';
+                break;
+            case "poison": pokemonType1.style.backgroundColor = '#a59';
+                break;
+            case "ground": pokemonType1.style.backgroundColor = '#db5';
+                break;
+            case "flying": pokemonType1.style.backgroundColor = '#89f';
+                break;
+            case "psychic": pokemonType1.style.backgroundColor = '#f59';
+                break;
+            case "bug": pokemonType1.style.backgroundColor = '#ab2';
+                break;
+            case "rock": pokemonType1.style.backgroundColor = '#ba6';
+                break;
+            case "ghost": pokemonType1.style.backgroundColor = '#66b';
+                break;
+            case "dragon": pokemonType1.style.backgroundColor = '#76e';
+                break;
+            case "dark": pokemonType1.style.backgroundColor = '#754';
+                break;
+            case "steel": pokemonType1.style.backgroundColor = '#aab';
+                break;
+            case "fairy": pokemonType1.style.backgroundColor = '#e9e';
                 break;
         };
+
+        if (data['types']['1'] !== undefined){
+            switch (data['types']['1']['type']['name']) {
+            case "normal": pokemonType2.style.backgroundColor = '#aa9';
+                break;
+            case "fire": pokemonType2.style.backgroundColor = '#f42';
+                break;
+            case "water": pokemonType2.style.backgroundColor = '#39f';
+                break;
+            case "electric": pokemonType2.style.backgroundColor = '#fc3';
+                break;
+            case "grass": pokemonType2.style.backgroundColor = '#7c5';
+                break;
+            case "ice": pokemonType2.style.backgroundColor = '#6cf';
+                break;
+            case "fighting": pokemonType2.style.backgroundColor = '#b54';
+                break;
+            case "poison": pokemonType2.style.backgroundColor = '#a59';
+                break;
+            case "ground": pokemonType2.style.backgroundColor = '#db5';
+                break;
+            case "flying": pokemonType2.style.backgroundColor = '#89f';
+                break;
+            case "psychic": pokemonType2.style.backgroundColor = '#f59';
+                break;
+            case "bug": pokemonType2.style.backgroundColor = '#ab2';
+                break;
+            case "rock": pokemonType2.style.backgroundColor = '#ba6';
+                break;
+            case "ghost": pokemonType2.style.backgroundColor = '#66b';
+                break;
+            case "dragon": pokemonType2.style.backgroundColor = '#76e';
+                break;
+            case "dark": pokemonType2.style.backgroundColor = '#754';
+                break;
+            case "steel": pokemonType2.style.backgroundColor = '#aab';
+                break;
+            case "fairy": pokemonType2.style.backgroundColor = '#e9e';
+                break;
+        };}
 
 
         if (data.id < 9) { pokemonNumber.innerHTML = "00" + data.id };
