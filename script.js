@@ -15,11 +15,10 @@ const form = document.querySelector(".busca");
 const search = document.querySelector(".search");
 
 const fetchPokemon = async (pokemon) => {
-  const APIResponse = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-  );
+  const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
   if (APIResponse.status === 200) {
     const data = await APIResponse.json();
+    console.log(data);
     return data;
   }
 };
@@ -65,10 +64,7 @@ const renderPokemon = async (pokemon) => {
     if (data.id > 99) {
       pokemonNumber.innerHTML = data.id;
     }
-    pokemonImage.src =
-      data["sprites"]["versions"]["generation-v"]["black-white"]["animated"][
-        "front_default"
-      ];
+    pokemonImage.src = data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
   } else {
     pokemonImage.style.display = "none";
     pokemonName.innerHTML = "Not found :c";
