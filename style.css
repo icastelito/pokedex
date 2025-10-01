@@ -19,6 +19,14 @@ body {
   background: linear-gradient(to bottom, #5a7fca 0%, #2e5cb8 100%);
 }
 
+h1 {
+font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000080;
+  font-size: 28px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);}
+
 :root {
   --white: #fefefe;
   --lightgrey: #f9f9f9ff;
@@ -140,22 +148,6 @@ body {
   width: 50%;
   height: 50%;
   object-fit: contain;
-}
-
-.pokemon-name {
-  font-weight: 700;
-  font-family: "Tahoma", "Arial", sans-serif;
-  color: #000080;
-  font-size: 28px;
-  text-transform: capitalize;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
-}
-
-.pokemon-number {
-  font-weight: 400;
-  font-family: "Tahoma", "Arial", sans-serif;
-  color: #000;
-  font-size: 18px;
 }
 
 .pokemon-type-primary {
