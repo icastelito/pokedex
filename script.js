@@ -1,18 +1,18 @@
-const pokemonImage = document.querySelector(".pokemon_img_data");
-const pokemonNumber = document.querySelector(".pokemon_number_data");
-const pokemonName = document.querySelector(".pokemon_name_data");
-const pokemonType1 = document.querySelector(".type_pokemon1");
-const pokemonType2 = document.querySelector(".type_pokemon2");
-const pokemonHeight = document.querySelector(".height");
-const pokemonBG = document.querySelector(".bg");
+const pokemonImage = document.querySelector(".pokemon-image");
+const pokemonNumber = document.querySelector(".pokemon-number");
+const pokemonName = document.querySelector(".pokemon-name");
+const pokemonTypePrimary = document.querySelector(".pokemon-type-primary");
+const pokemonTypeSecondary = document.querySelector(".pokemon-type-secondary");
+const pokemonHeight = document.querySelector(".pokemon-height");
+const pokemonBG = document.querySelector(".background-image");
 
 function roundHeight(feet) {
 	var meters = feet * 0.1;
 	return +meters.toFixed(2);
 }
 
-const form = document.querySelector(".busca");
-const search = document.querySelector(".search");
+const form = document.querySelector(".search-form");
+const search = document.querySelector(".search-input");
 
 const fetchPokemon = async (pokemon) => {
 	const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
@@ -32,27 +32,27 @@ const renderPokemon = async (pokemon) => {
 		pokemonHeight.innerHTML = `Altura: ${roundHeight(data.height)} m`;
 
 		if (data["types"]["1"] == undefined) {
-			pokemonType1.innerHTML = data["types"]["0"]["type"]["name"];
-			pokemonType2.classList.remove("type_pokemon2");
-			pokemonType2.classList.add("type_pokermon_undefined");
-			pokemonType2.innerHTML = " ";
+			pokemonTypePrimary.innerHTML = data["types"]["0"]["type"]["name"];
+			pokemonTypeSecondary.classList.remove("pokemon-type-secondary");
+			pokemonTypeSecondary.classList.add("pokemon-type-undefined");
+			pokemonTypeSecondary.innerHTML = " ";
 		} else {
-			pokemonType1.innerHTML = data["types"]["0"]["type"]["name"];
-			pokemonType2.classList.remove("type_pokermon_undefined");
-			pokemonType2.classList.add("type_pokemon2");
-			pokemonType2.innerHTML = data["types"]["1"]["type"]["name"];
+			pokemonTypePrimary.innerHTML = data["types"]["0"]["type"]["name"];
+			pokemonTypeSecondary.classList.remove("pokemon-type-undefined");
+			pokemonTypeSecondary.classList.add("pokemon-type-secondary");
+			pokemonTypeSecondary.innerHTML = data["types"]["1"]["type"]["name"];
 		}
 
 		var type1 = data["types"]["0"]["type"]["name"];
 		pokemonBG.src = `./images/${type1}.png`;
 		var type2 = data["types"]["1"] ? data["types"]["1"]["type"]["name"] : null;
 
-		pokemonType1.style.backgroundColor = `var(--${type1})`;
+		pokemonTypePrimary.style.backgroundColor = `var(--${type1})`;
 
 		if (type2) {
-			pokemonType2.style.backgroundColor = `var(--${type2})`;
+			pokemonTypeSecondary.style.backgroundColor = `var(--${type2})`;
 		} else {
-			pokemonType2.style.backgroundColor = "transparent";
+			pokemonTypeSecondary.style.backgroundColor = "transparent";
 		}
 
 		if (data.id < 9) {
@@ -64,16 +64,44 @@ const renderPokemon = async (pokemon) => {
 		if (data.id > 99) {
 			pokemonNumber.innerHTML = data.id;
 		}
-		if (data.id < 650) {
-			pokemonImage.src = data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"];
-		} else {
-			pokemonImage.src = data["sprites"]["front_default"];
+		// Sistema de fallback para garantir que sempre tenha uma imagem
+		const imageSources = [
+			// Tenta primeira opção: animação da geração V
+			data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
+			// Fallback 1: imagem estática da geração V
+			data["sprites"]["versions"]["generation-v"]["black-white"]["front_default"],
+			// Fallback 2: geração VII
+			data["sprites"]["versions"]["generation-vii"]["ultra-sun-ultra-moon"]["front_default"],
+			// Fallback 3: geração VIII
+			data["sprites"]["versions"]["generation-viii"]["icons"]["front_default"],
+			// Fallback 4: imagem oficial mais recente
+			data["sprites"]["other"]["official-artwork"]["front_default"],
+			// Fallback 5: imagem padrão da API
+			data["sprites"]["front_default"],
+			// Fallback 6: imagem home
+			data["sprites"]["other"]["home"]["front_default"]
+		];
+
+		// Encontra a primeira imagem disponível
+		let imageFound = false;
+		for (let imgSrc of imageSources) {
+			if (imgSrc) {
+				pokemonImage.src = imgSrc;
+				pokemonImage.style.display = "block";
+				imageFound = true;
+				break;
+			}
+		}
+
+		// Se nenhuma imagem for encontrada
+		if (!imageFound) {
+			pokemonImage.style.display = "none";
 		}
 	} else {
 		pokemonImage.style.display = "none";
 		pokemonName.innerHTML = "Not found :c";
 		pokemonNumber.innerHTML = "";
-		pokemonType.innerHTML = "";
+		pokemonTypePrimary.innerHTML = "";
 		pokemonHeight.innerHTML = "";
 	}
 };
@@ -82,4 +110,9 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	renderPokemon(search.value.toLowerCase());
 	search.value = "";
+});
+
+// Carrega o Pokémon #001 (Bulbasaur) ao iniciar a página
+window.addEventListener("DOMContentLoaded", () => {
+	renderPokemon(1);
 });
