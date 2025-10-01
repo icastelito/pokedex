@@ -31,29 +31,31 @@ const renderPokemon = async (pokemon) => {
 		pokemonName.innerHTML = data.name;
 		pokemonHeight.innerHTML = `Altura: ${roundHeight(data.height)} m`;
 
+		var type1 = data["types"]["0"]["type"]["name"];
+		var type2 = data["types"]["1"] ? data["types"]["1"]["type"]["name"] : null;
+
+		// Remove todas as classes de tipo anteriores
+		pokemonTypePrimary.className = "pokemon-type-primary";
+		pokemonTypeSecondary.className = "pokemon-type-secondary";
+
 		if (data["types"]["1"] == undefined) {
-			pokemonTypePrimary.innerHTML = data["types"]["0"]["type"]["name"];
+			pokemonTypePrimary.innerHTML = type1;
+			pokemonTypePrimary.classList.add(type1);
+			
 			pokemonTypeSecondary.classList.remove("pokemon-type-secondary");
 			pokemonTypeSecondary.classList.add("pokemon-type-undefined");
 			pokemonTypeSecondary.innerHTML = " ";
 		} else {
-			pokemonTypePrimary.innerHTML = data["types"]["0"]["type"]["name"];
+			pokemonTypePrimary.innerHTML = type1;
+			pokemonTypePrimary.classList.add(type1);
+			
 			pokemonTypeSecondary.classList.remove("pokemon-type-undefined");
 			pokemonTypeSecondary.classList.add("pokemon-type-secondary");
-			pokemonTypeSecondary.innerHTML = data["types"]["1"]["type"]["name"];
+			pokemonTypeSecondary.innerHTML = type2;
+			pokemonTypeSecondary.classList.add(type2);
 		}
 
-		var type1 = data["types"]["0"]["type"]["name"];
 		pokemonBG.src = `./images/${type1}.png`;
-		var type2 = data["types"]["1"] ? data["types"]["1"]["type"]["name"] : null;
-
-		pokemonTypePrimary.style.backgroundColor = `var(--${type1})`;
-
-		if (type2) {
-			pokemonTypeSecondary.style.backgroundColor = `var(--${type2})`;
-		} else {
-			pokemonTypeSecondary.style.backgroundColor = "transparent";
-		}
 
 		if (data.id < 9) {
 			pokemonNumber.innerHTML = "00" + data.id;

@@ -15,6 +15,8 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
+  background: #5a7fca;
+  background: linear-gradient(to bottom, #5a7fca 0%, #2e5cb8 100%);
 }
 
 :root {
@@ -59,27 +61,39 @@ body {
   width: 100%;
   max-width: 400px;
   height: 40px;
-  border: 2px solid #333;
+  border: 2px solid #0831d9;
+  border-top-color: #7a96df;
+  border-left-color: #7a96df;
   border-radius: 0;
-  font-weight: 600;
-  color: #3a444d;
-  font-size: 16px;
+  font-weight: 400;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000;
+  font-size: 14px;
   padding: 0 10px;
+  background: #fff;
+}
+
+.search-input:focus {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
 }
 
 .main-container {
-  border: 2px solid var(--grey);
+  border: 3px solid;
+  border-color: #dfdfdf #0831d9 #0831d9 #dfdfdf;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 0;
   width: 100%;
   max-width: 800px;
-  padding: 20px;
-  background: white;
+  padding: 0;
+  background: #ece9d8;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .image-container {
-  border: 2px solid var(--grey);
+  border-right: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,6 +101,8 @@ body {
   min-height: 400px;
   position: relative;
   overflow: hidden;
+  background: #fff;
+  margin: 8px;
 }
 
 .background-image {
@@ -99,13 +115,16 @@ body {
 }
 
 .info-container {
-  border: 2px solid var(--grey);
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 50%;
   padding: 20px;
-  gap: 15px;
+  gap: 12px;
+  background: #d4d0c8;
+  margin: 8px 8px 8px 0;
 }
 
 .status {
@@ -118,61 +137,179 @@ body {
 .pokemon-image {
   position: relative;
   z-index: 2;
-  width: 70%;
-  height: 70%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
 }
 
 .pokemon-name {
-  font-weight: 500;
-  color: red;
-  font-size: 30px;
+  font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000080;
+  font-size: 28px;
   text-transform: capitalize;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
 }
 
 .pokemon-number {
-  font-weight: 500;
-  color: blue;
-  font-size: 20px;
+  font-weight: 400;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000;
+  font-size: 18px;
 }
 
 .pokemon-type-primary {
   display: inline-block;
   width: 80px;
-  background: #dbdbdb;
-  border-radius: 0;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: normal;
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  border: 2px solid;
+  border-color: #fff #0831d9 #0831d9 #fff;
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
   line-height: 1.5rem;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
-  padding: 5px;
+  padding: 4px;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 .pokemon-type-secondary {
   display: inline-block;
   width: 80px;
-  background: #dbdbdb;
-  border-radius: 0;
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: normal;
+  background: linear-gradient(to bottom, #fff 0%, #ece9d8 100%);
+  border: 2px solid;
+  border-color: #fff #0831d9 #0831d9 #fff;
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
   line-height: 1.5rem;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
-  padding: 5px;
+  padding: 4px;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 
 .pokemon-type-undefined {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   border-color: transparent;
+  box-shadow: none;
 }
 
-.var {
-  color: green;
+.pokemon-height {
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 14px;
+  color: #000;
+  font-weight: 400;
+}
+
+/* Cores dos tipos de Pokémon - Windows XP Style */
+.pokemon-type-primary.normal,
+.pokemon-type-secondary.normal {
+  background: var(--normal);
+  border-color: #bbb #887 #887 #bbb;
+}
+
+.pokemon-type-primary.fire,
+.pokemon-type-secondary.fire {
+  background: var(--fire);
+  border-color: #f86 #c20 #c20 #f86;
+}
+
+.pokemon-type-primary.water,
+.pokemon-type-secondary.water {
+  background: var(--water);
+  border-color: #6cf #06c #06c #6cf;
+}
+
+.pokemon-type-primary.electric,
+.pokemon-type-secondary.electric {
+  background: var(--electric);
+  border-color: #ffd #ca0 #ca0 #ffd;
+}
+
+.pokemon-type-primary.grass,
+.pokemon-type-secondary.grass {
+  background: var(--grass);
+  border-color: #9e7 #5a3 #5a3 #9e7;
+}
+
+.pokemon-type-primary.ice,
+.pokemon-type-secondary.ice {
+  background: var(--ice);
+  border-color: #9ef #3bc #3bc #9ef;
+}
+
+.pokemon-type-primary.fighting,
+.pokemon-type-secondary.fighting {
+  background: var(--fighting);
+  border-color: #d87 #932 #932 #d87;
+}
+
+.pokemon-type-primary.poison,
+.pokemon-type-secondary.poison {
+  background: var(--poison);
+  border-color: #c7b #837 #837 #c7b;
+}
+
+.pokemon-type-primary.ground,
+.pokemon-type-secondary.ground {
+  background: var(--ground);
+  border-color: #ec8 #a83 #a83 #ec8;
+}
+
+.pokemon-type-primary.flying,
+.pokemon-type-secondary.flying {
+  background: var(--flying);
+  border-color: #bcf #67c #67c #bcf;
+}
+
+.pokemon-type-primary.psychic,
+.pokemon-type-secondary.psychic {
+  background: var(--psychic);
+  border-color: #f9b #c36 #c36 #f9b;
+}
+
+.pokemon-type-primary.bug,
+.pokemon-type-secondary.bug {
+  background: var(--bug);
+  border-color: #ce4 #890 #890 #ce4;
+}
+
+.pokemon-type-primary.rock,
+.pokemon-type-secondary.rock {
+  background: var(--rock);
+  border-color: #dc8 #974 #974 #dc8;
+}
+
+.pokemon-type-primary.ghost,
+.pokemon-type-secondary.ghost {
+  background: var(--ghost);
+  border-color: #99d #449 #449 #99d;
+}
+
+.pokemon-type-primary.dragon,
+.pokemon-type-secondary.dragon {
+  background: var(--dragon);
+  border-color: #a9f #50c #50c #a9f;
+}
+
+.pokemon-type-primary.dark,
+.pokemon-type-secondary.dark {
+  background: var(--dark);
+  border-color: #987 #532 #532 #987;
+}
+
+.pokemon-type-primary.steel,
+.pokemon-type-secondary.steel {
+  background: var(--steel);
+  border-color: #ccd #889 #889 #ccd;
+}
+
+.pokemon-type-primary.fairy,
+.pokemon-type-secondary.fairy {
+  background: var(--fairy);
+  border-color: #fbe #c8d #c8d #fbe;
 }
