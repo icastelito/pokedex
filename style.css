@@ -334,3 +334,75 @@ font-weight: 700;
   background: var(--fairy);
   border-color: #fbe #c8d #c8d #fbe;
 }
+
+.pokemon-physical {
+  display: flex;
+  gap: 20px;
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 13px;
+  color: #000;
+  margin-top: 8px;
+}
+
+.pokemon-height,
+.pokemon-weight {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 4px 8px;
+  border: 1px solid #808080;
+}
+
+.pokemon-stats {
+  margin-top: 15px;
+  width: 100%;
+}
+
+.pokemon-stats h2 {
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000080;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.stat-name {
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  min-width: 60px;
+  text-align: right;
+}
+
+.stat-bar-container {
+  flex: 1;
+  height: 16px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bar {
+  height: 100%;
+  background: linear-gradient(to bottom, #316ac5 0%, #0831d9 100%);
+  transition: width 0.5s ease;
+  border-right: 1px solid #0831d9;
+}
+
+.stat-value {
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+  min-width: 30px;
+  text-align: center;
+}
