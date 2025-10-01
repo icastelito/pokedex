@@ -150,6 +150,35 @@ font-weight: 700;
   object-fit: contain;
 }
 
+.pokemon-name {
+  font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000080;
+  font-size: 28px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.pokemon-number {
+  font-weight: 700;
+  font-family: "Tahoma", "Arial", sans-serif;
+  color: #000080;
+  font-size: 28px;
+  text-transform: capitalize;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.pokemon-types {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.pokemon-info {
+  display: flex;
+  align-items: center;
+}
+
 .pokemon-type-primary {
   display: inline-block;
   width: 80px;
