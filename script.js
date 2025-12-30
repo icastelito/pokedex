@@ -7,6 +7,22 @@ const pokemonHeight = document.querySelector(".pokemon-height");
 const pokemonWeight = document.querySelector(".pokemon-weight");
 const pokemonBG = document.querySelector(".background-image");
 
+// Botões de navegação
+const btnPrev = document.querySelector(".btn-prev");
+const btnNext = document.querySelector(".btn-next");
+const btnConfig = document.querySelector(".btn-config");
+
+// Modal de configurações
+const configModal = document.getElementById("configModal");
+const closeModal = document.getElementById("closeModal");
+const spriteSelect = document.getElementById("spriteSelect");
+
+// Variável para rastrear o Pokémon atual
+let currentPokemonId = 1;
+
+// Preferência de sprite (padrão: animado)
+let spritePreference = localStorage.getItem("spritePreference") || "animated";
+
 // Elementos de status
 const statHpBar = document.querySelector(".stat-hp");
 const statHpValue = document.querySelector(".stat-hp-value");
@@ -50,6 +66,9 @@ const renderPokemon = async (pokemon) => {
 	console.log(data.height);
 
 	if (data) {
+		// Atualiza o ID atual do Pokémon
+		currentPokemonId = data.id;
+
 		pokemonName.innerHTML = data.name;
 		pokemonHeight.innerHTML = `Altura: ${roundHeight(data.height)} m`;
 		pokemonWeight.innerHTML = `Peso: ${roundWeight(data.weight)} kg`;
@@ -64,14 +83,14 @@ const renderPokemon = async (pokemon) => {
 		if (data["types"]["1"] == undefined) {
 			pokemonTypePrimary.innerHTML = type1;
 			pokemonTypePrimary.classList.add(type1);
-			
+
 			pokemonTypeSecondary.classList.remove("pokemon-type-secondary");
 			pokemonTypeSecondary.classList.add("pokemon-type-undefined");
 			pokemonTypeSecondary.innerHTML = " ";
 		} else {
 			pokemonTypePrimary.innerHTML = type1;
 			pokemonTypePrimary.classList.add(type1);
-			
+
 			pokemonTypeSecondary.classList.remove("pokemon-type-undefined");
 			pokemonTypeSecondary.classList.add("pokemon-type-secondary");
 			pokemonTypeSecondary.innerHTML = type2;
@@ -83,32 +102,32 @@ const renderPokemon = async (pokemon) => {
 		// Renderiza os status
 		const stats = data.stats;
 		const maxStatValue = 255; // Valor máximo de stat no Pokémon
-		
+
 		// HP
 		const hpValue = stats[0].base_stat;
 		statHpValue.innerHTML = hpValue;
 		statHpBar.style.width = `${(hpValue / maxStatValue) * 100}%`;
-		
+
 		// Attack
 		const attackValue = stats[1].base_stat;
 		statAttackValue.innerHTML = attackValue;
 		statAttackBar.style.width = `${(attackValue / maxStatValue) * 100}%`;
-		
+
 		// Defense
 		const defenseValue = stats[2].base_stat;
 		statDefenseValue.innerHTML = defenseValue;
 		statDefenseBar.style.width = `${(defenseValue / maxStatValue) * 100}%`;
-		
+
 		// Special Attack
 		const spatkValue = stats[3].base_stat;
 		statSpatkValue.innerHTML = spatkValue;
 		statSpatkBar.style.width = `${(spatkValue / maxStatValue) * 100}%`;
-		
+
 		// Special Defense
 		const spdefValue = stats[4].base_stat;
 		statSpdefValue.innerHTML = spdefValue;
 		statSpdefBar.style.width = `${(spdefValue / maxStatValue) * 100}%`;
-		
+
 		// Speed
 		const speedValue = stats[5].base_stat;
 		statSpeedValue.innerHTML = speedValue;
@@ -123,22 +142,32 @@ const renderPokemon = async (pokemon) => {
 		if (data.id > 99) {
 			pokemonNumber.innerHTML = data.id;
 		}
+
+		// Função para obter sprite baseado na preferência
+		const getPreferredSprite = (sprites) => {
+			const spriteOptions = {
+				animated: sprites["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
+				gen5: sprites["versions"]["generation-v"]["black-white"]["front_default"],
+				gen7: sprites["versions"]["generation-vii"]["ultra-sun-ultra-moon"]["front_default"],
+				official: sprites["other"]["official-artwork"]["front_default"],
+				home: sprites["other"]["home"]["front_default"],
+				default: sprites["front_default"],
+			};
+			return spriteOptions[spritePreference];
+		};
+
 		// Sistema de fallback para garantir que sempre tenha uma imagem
 		const imageSources = [
-			// Tenta primeira opção: animação da geração V
+			// Tenta primeiro a preferência do usuário
+			getPreferredSprite(data.sprites),
+			// Fallbacks
 			data["sprites"]["versions"]["generation-v"]["black-white"]["animated"]["front_default"],
-			// Fallback 1: imagem estática da geração V
 			data["sprites"]["versions"]["generation-v"]["black-white"]["front_default"],
-			// Fallback 2: geração VII
 			data["sprites"]["versions"]["generation-vii"]["ultra-sun-ultra-moon"]["front_default"],
-			// Fallback 3: geração VIII
 			data["sprites"]["versions"]["generation-viii"]["icons"]["front_default"],
-			// Fallback 4: imagem oficial mais recente
 			data["sprites"]["other"]["official-artwork"]["front_default"],
-			// Fallback 5: imagem padrão da API
 			data["sprites"]["front_default"],
-			// Fallback 6: imagem home
-			data["sprites"]["other"]["home"]["front_default"]
+			data["sprites"]["other"]["home"]["front_default"],
 		];
 
 		// Encontra a primeira imagem disponível
@@ -169,6 +198,42 @@ form.addEventListener("submit", (event) => {
 	event.preventDefault();
 	renderPokemon(search.value.toLowerCase());
 	search.value = "";
+});
+
+// Navegação entre Pokémon
+btnPrev.addEventListener("click", () => {
+	if (currentPokemonId > 1) {
+		renderPokemon(currentPokemonId - 1);
+	}
+});
+
+btnNext.addEventListener("click", () => {
+	renderPokemon(currentPokemonId + 1);
+});
+
+// Modal de configurações
+btnConfig.addEventListener("click", () => {
+	spriteSelect.value = spritePreference;
+	configModal.classList.add("active");
+});
+
+closeModal.addEventListener("click", () => {
+	configModal.classList.remove("active");
+});
+
+// Fechar modal ao clicar fora dele
+configModal.addEventListener("click", (event) => {
+	if (event.target === configModal) {
+		configModal.classList.remove("active");
+	}
+});
+
+// Salvar preferência de sprite
+spriteSelect.addEventListener("change", (event) => {
+	spritePreference = event.target.value;
+	localStorage.setItem("spritePreference", spritePreference);
+	// Recarrega o Pokémon atual com o novo sprite
+	renderPokemon(currentPokemonId);
 });
 
 // Carrega o Pokémon #001 (Bulbasaur) ao iniciar a página

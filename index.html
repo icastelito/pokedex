@@ -1,89 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./style.css" />
+		<script src="./script.js" defer></script>
+		<title>Pokedex</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
-    <title>Pokedex</title>
-</head>
+	<body>
+		<div class="main-container">
+			<div class="search-bar">
+				<button class="nav-btn btn-prev" title="Pokémon Anterior">◀</button>
+				<form class="search-form">
+					<input type="text" placeholder="Name or Number" class="search-input" />
+				</form>
+				<button class="nav-btn btn-next" title="Próximo Pokémon">▶</button>
+				<button class="nav-btn btn-config" title="Configurações">⚙</button>
+			</div>
+			<div class="pokemon-display">
+				<div class="image-container">
+					<img src="./images/bg.jpg" class="background-image" alt="Background Image" />
+					<img src="#" class="pokemon-image" alt="Pokemon Image" />
+				</div>
 
-<body>
-    <form class="search-form">
-        <input type="text" placeholder="Name or Number" class="search-input">
-    </form>
+				<div class="info-container">
+					<h1>#<span class="pokemon-number"></span> - <span class="pokemon-name"></span></h1>
 
-    <div class="main-container">
-        <div class="image-container">
-            <img src="./images/bg.jpg" class="background-image" alt="Background Image">
-            <img src="#" class="pokemon-image" alt="Pokemon Image">
-        </div>
+					<div class="pokemon-types">
+						<label class="pokemon-type-primary"></label>
+						<label class="pokemon-type-secondary"></label>
+					</div>
 
-        <div class="info-container">
-            <h1>
-                #<span class="pokemon-number"></span> - <span class="pokemon-name"></span>
-            </h1>
-            
-            <div class="pokemon-types">
-                <label class="pokemon-type-primary"></label>
-                <label class="pokemon-type-secondary"></label>
-            </div>
-            
-            <div class="pokemon-physical">
-                <div class="pokemon-height"></div>
-                <div class="pokemon-weight"></div>
-            </div>
+					<div class="pokemon-physical">
+						<div class="pokemon-height"></div>
+						<div class="pokemon-weight"></div>
+					</div>
 
-            <div class="pokemon-stats">
-                <h2>Status</h2>
-                <div class="stat-item">
-                    <span class="stat-name">HP:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-hp"></div>
-                    </div>
-                    <span class="stat-value stat-hp-value"></span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-name">ATK:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-attack"></div>
-                    </div>
-                    <span class="stat-value stat-attack-value"></span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-name">DEF:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-defense"></div>
-                    </div>
-                    <span class="stat-value stat-defense-value"></span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-name">SP.ATK:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-spatk"></div>
-                    </div>
-                    <span class="stat-value stat-spatk-value"></span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-name">SP.DEF:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-spdef"></div>
-                    </div>
-                    <span class="stat-value stat-spdef-value"></span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-name">SPD:</span>
-                    <div class="stat-bar-container">
-                        <div class="stat-bar stat-speed"></div>
-                    </div>
-                    <span class="stat-value stat-speed-value"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="pokemon-stats">
+						<h2>Status</h2>
+						<div class="stat-item">
+							<span class="stat-name">HP:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-hp"></div>
+							</div>
+							<span class="stat-value stat-hp-value"></span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-name">ATK:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-attack"></div>
+							</div>
+							<span class="stat-value stat-attack-value"></span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-name">DEF:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-defense"></div>
+							</div>
+							<span class="stat-value stat-defense-value"></span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-name">SP.ATK:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-spatk"></div>
+							</div>
+							<span class="stat-value stat-spatk-value"></span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-name">SP.DEF:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-spdef"></div>
+							</div>
+							<span class="stat-value stat-spdef-value"></span>
+						</div>
+						<div class="stat-item">
+							<span class="stat-name">SPD:</span>
+							<div class="stat-bar-container">
+								<div class="stat-bar stat-speed"></div>
+							</div>
+							<span class="stat-value stat-speed-value"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-</body>
-
+		<!-- Modal de Configurações -->
+		<div class="config-modal" id="configModal">
+			<div class="config-modal-content">
+				<div class="config-modal-header">
+					<span class="config-modal-title">Configurações</span>
+					<button class="config-modal-close" id="closeModal">✕</button>
+				</div>
+				<div class="config-modal-body">
+					<label class="config-label">Sprite Preferido:</label>
+					<select class="config-select" id="spriteSelect">
+						<option value="animated">Animado (Gen V)</option>
+						<option value="gen5">Estático (Gen V)</option>
+						<option value="gen7">Ultra Sun/Moon (Gen VII)</option>
+						<option value="official">Official Artwork</option>
+						<option value="home">Pokémon HOME</option>
+						<option value="default">Padrão da API</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
